@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\tynuk\\Desktop\\ReservationSystem\\ReservationSystem.csproj": {}
+    "C:\\Users\\tynuk\\Desktop\\ReservationSystem\\ReservationSystem.csproj": {}
   },
   "projects": {
-    "c:\\Users\\tynuk\\Desktop\\ReservationSystem\\ReservationSystem.csproj": {
+    "C:\\Users\\tynuk\\Desktop\\ReservationSystem\\ReservationSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\tynuk\\Desktop\\ReservationSystem\\ReservationSystem.csproj",
+        "projectUniqueName": "C:\\Users\\tynuk\\Desktop\\ReservationSystem\\ReservationSystem.csproj",
         "projectName": "ReservationSystem",
-        "projectPath": "c:\\Users\\tynuk\\Desktop\\ReservationSystem\\ReservationSystem.csproj",
+        "projectPath": "C:\\Users\\tynuk\\Desktop\\ReservationSystem\\ReservationSystem.csproj",
         "packagesPath": "C:\\Users\\tynuk\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\tynuk\\Desktop\\ReservationSystem\\obj\\",
+        "outputPath": "C:\\Users\\tynuk\\Desktop\\ReservationSystem\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
