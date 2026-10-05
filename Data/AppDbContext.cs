@@ -1,3 +1,4 @@
+namespace ReservationSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using ReservationSystem.Models;
 
