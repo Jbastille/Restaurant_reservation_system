@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="ReservationSystem.Client/ReservationSystem.Client.csproj" />
+  <Project Path="Reservation.Api/ReservationSystem.Api.csproj" />
+  <Project Path="ReservationSystem.Shared/ReservationSystem.Shared.csproj" />
+</Solution>

@@ -1,0 +1,16 @@
+@ReservationSystem_HostAddress = http://localhost:5081
+
+GET http://localhost:5081/api/reservations
+Accept: application/json
+
+
+### Create a New Reservation for testing
+POST http://localhost:5081/api/reservations
+Content-Type: application/json
+
+{
+  "clientName": "Jane Doe",
+  "date": "2026-10-15T18:30:00Z",
+  "partySize": 4,
+  "status": "Confirmed"
+}
