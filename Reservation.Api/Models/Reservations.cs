@@ -1,10 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+namespace Reservation.Api.Models;
 
-namespace ReservationSystem.Models;
-
-[Table("Reservations")] // This data need to match the exact Column names in the database. 
-public class Reservation
+public class Reservations
 {
     [Key]
     [Column("ReservationId")] 
@@ -21,4 +19,18 @@ public class Reservation
 
     [Column("Status")]
     public string? Status { get; set; }
+
+    // --- Foreign Key for Table ---
+    [Column("table_id")]
+    public int? TableId { get; set; }
+    
+    [ForeignKey("table_id")]
+    public Table? Table { get; set; } // Navigation property
+
+    // --- Foreign Key for User ---
+    [Column("user_id")]
+    public int? UserId { get; set; }
+
+    [ForeignKey("user_id")]
+    public User? User { get; set; } // Navigation property
 }

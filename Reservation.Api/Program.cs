@@ -1,11 +1,10 @@
 using System.Net.WebSockets;
 using Microsoft.EntityFrameworkCore;
-using ReservationSystem.Data;
+using Reservation.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 //Need to add services to the container
@@ -16,7 +15,7 @@ builder.Services.AddScoped(sp => new HttpClient
     BaseAddress = new Uri("http://localhost:5081")
 });
 
-//This will hook up the database context
+//This will hook up the database context .... connect to the database
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using ReservationSystem.Data;
-using ReservationSystem.Models;
+using Reservation.Api.Models;
+using Reservation.Api.Data;
 
-namespace ReservationSystem.Controllers;
+
+namespace Reservation.Api.Controllers;
 
 
 [ApiController]
@@ -17,7 +18,7 @@ public class ReservationsController : ControllerBase
     }
     // Post: api/reservations
     [HttpPost]
-    public async Task<IActionResult> CreateReservation(Reservation reservation)
+    public async Task<IActionResult> CreateReservation(Reservations reservation)
     {
         _context.Reservations.Add(reservation);
         await _context.SaveChangesAsync();
