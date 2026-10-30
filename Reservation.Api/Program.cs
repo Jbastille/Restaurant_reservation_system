@@ -18,12 +18,9 @@ builder.Services.AddScoped(sp => new HttpClient
 //This will hook up the database context .... connect to the database
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+   options.UseSqlite(
+    builder.Configuration.GetConnectionString("DefaultConnection"));
     
-    // Detailed EF Core logging for local debugging
-    options.EnableSensitiveDataLogging();
-    options.EnableDetailedErrors();
-    options.LogTo(Console.WriteLine, LogLevel.Information);
 });
 
 var app = builder.Build();

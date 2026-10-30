@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Reservation.Api.Data;
 
@@ -16,86 +15,135 @@ namespace ReservationSystem.Api.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.12")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.14");
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            modelBuilder.Entity("Reservation.Api.Models.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("customer_id");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("email");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("first_name");
+
+                    b.Property<bool>("IsVip")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_vip");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("last_name");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("phone");
+
+                    b.Property<string>("SpecialNotes")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("notes");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Reservation.Api.Models.DiningSlot", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("slot_id");
+
+                    b.Property<TimeSpan>("EndTime")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("end_time");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_active");
+
+                    b.Property<int>("MaxCovers")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("max_covers");
+
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("start_time");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DiningSlots");
+                });
 
             modelBuilder.Entity("Reservation.Api.Models.Reservations", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ReservationId");
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("reservation_id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ClientName")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("CustomerName");
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("customer_id");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("ReservationDate");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("reservation_date");
 
                     b.Property<int>("PartySize")
-                        .HasColumnType("int")
-                        .HasColumnName("PartySize");
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("party_size");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Status");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("status");
 
                     b.Property<int?>("TableId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("table_id");
 
                     b.Property<int?>("UserId")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("user_id");
-
-                    b.Property<int?>("table_id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("user_id")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("table_id");
+                    b.HasIndex("CustomerId");
 
-                    b.HasIndex("user_id");
+                    b.HasIndex("TableId");
 
-                    b.ToTable("Reservations", t =>
-                        {
-                            t.Property("table_id")
-                                .HasColumnName("table_id1");
+                    b.HasIndex("UserId");
 
-                            t.Property("user_id")
-                                .HasColumnName("user_id1");
-                        });
+                    b.ToTable("Reservations");
                 });
 
             modelBuilder.Entity("Reservation.Api.Models.Table", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("table_id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("Capacity")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("capacity");
 
                     b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("is_available");
 
                     b.Property<int>("TableNumber")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("table_number");
 
                     b.HasKey("Id");
@@ -107,28 +155,26 @@ namespace ReservationSystem.Api.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("user_id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("TEXT")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("PasswordHash");
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("Role");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("TEXT")
                         .HasColumnName("Username");
 
                     b.HasKey("Id");
@@ -138,17 +184,28 @@ namespace ReservationSystem.Api.Migrations
 
             modelBuilder.Entity("Reservation.Api.Models.Reservations", b =>
                 {
+                    b.HasOne("Reservation.Api.Models.Customer", "Customer")
+                        .WithMany("Reservations")
+                        .HasForeignKey("CustomerId");
+
                     b.HasOne("Reservation.Api.Models.Table", "Table")
                         .WithMany()
-                        .HasForeignKey("table_id");
+                        .HasForeignKey("TableId");
 
                     b.HasOne("Reservation.Api.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("user_id");
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Customer");
 
                     b.Navigation("Table");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Reservation.Api.Models.Customer", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }

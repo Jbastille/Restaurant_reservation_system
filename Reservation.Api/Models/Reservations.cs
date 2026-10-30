@@ -1,36 +1,41 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Reservation.Api.Models;
 
 public class Reservations
 {
     [Key]
-    [Column("ReservationId")] 
+    [Column("reservation_id")] 
     public int Id { get; set; }
 
-    [Column("CustomerName")] 
-    public string? ClientName { get; set; }
-
-    [Column("ReservationDate")] 
+    [Column("reservation_date")] 
     public DateTime Date { get; set; }
 
-    [Column("PartySize")]
+    [Column("party_size")]
     public int PartySize { get; set; }
 
-    [Column("Status")]
+    [Column("status")]
     public string? Status { get; set; }
 
-    // --- Foreign Key for Table ---
+    // --- Customer Relationship ---
+    [Column("customer_id")]
+    public int? CustomerId { get; set; }
+
+    [ForeignKey("CustomerId")]
+    public Customer? Customer { get; set; }
+
+    // --- Table Relationship ---
     [Column("table_id")]
     public int? TableId { get; set; }
     
-    [ForeignKey("table_id")]
-    public Table? Table { get; set; } // Navigation property
+    [ForeignKey("TableId")]
+    public Table? Table { get; set; }
 
-    // --- Foreign Key for User ---
+    // --- User Relationship ---
     [Column("user_id")]
     public int? UserId { get; set; }
 
-    [ForeignKey("user_id")]
-    public User? User { get; set; } // Navigation property
+    [ForeignKey("UserId")]
+    public User? User { get; set; }
 }
