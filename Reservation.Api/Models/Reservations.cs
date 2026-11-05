@@ -6,10 +6,10 @@ namespace Reservation.Api.Models;
 public class Reservations
 {
     [Key]
-    [Column("reservation_id")] 
+    [Column("reservation_id")]
     public int Id { get; set; }
 
-    [Column("reservation_date")] 
+    [Column("reservation_date")]
     public DateTime Date { get; set; }
 
     [Column("party_size")]
@@ -28,7 +28,7 @@ public class Reservations
     // --- Table Relationship ---
     [Column("table_id")]
     public int? TableId { get; set; }
-    
+
     [ForeignKey("TableId")]
     public Table? Table { get; set; }
 

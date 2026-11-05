@@ -15,7 +15,7 @@ builder.Services.AddScoped(sp => new HttpClient
     BaseAddress = new Uri("http://localhost:5081")
 });
 
-//This will hook up the database context .... connect to the database
+//This will hook up the database context .... connect to the database VERY IMPORTANT!
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
    options.UseSqlite(
